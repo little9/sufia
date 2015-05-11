@@ -7,9 +7,8 @@ module CurationConcern
     end
 
     def copy_visibility
-      Sufia.queue.push(CopyVisibilityJob.new(params[:id]))
-      flash_message = 'Updating file permissions. This may take a few minutes. You may want to refresh your browser or return to this record later to see the updated file permissions.'
-      redirect_to Sufia::Engine.routes.url_helpers.generic_work_path(params[:id]), notice: flash_message
+      Sufia.queue.push(CopyPermissionsJob.new(params[:id]))
+      redirect_to Sufia::Engine.routes.url_helpers.generic_work_path(params[:id]), notice: I18n.t('sufia.upload.permissions_message')
     end
 
     def curation_concern

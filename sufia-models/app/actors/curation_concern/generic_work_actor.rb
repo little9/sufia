@@ -1,7 +1,7 @@
 
 module CurationConcern
   class GenericWorkActor < CurationConcern::BaseActor
-    include ManagesVisibilityActor
+    include ManagesPermissionsActor
 
     def create
       assign_pid  && super && attach_files && create_linked_resources && copy_visibility

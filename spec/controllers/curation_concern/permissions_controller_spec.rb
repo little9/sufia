@@ -17,7 +17,7 @@ describe CurationConcern::PermissionsController do
     let(:generic_work) { FactoryGirl.create(:generic_work, user: user) }
     it "should add a worker to the queue" do
       worker = double
-      CopyVisibilityJob.should_receive(:new).with(generic_work.id).and_return(worker)
+      CopyPermissionsJob.should_receive(:new).with(generic_work.id).and_return(worker)
       Sufia.queue.should_receive(:push).with(worker)
       post :copy_visibility, id: generic_work
       expect(response).to redirect_to Sufia::Engine.routes.url_helpers.generic_work_path(generic_work)

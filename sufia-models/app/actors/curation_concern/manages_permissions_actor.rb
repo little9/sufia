@@ -6,7 +6,7 @@ module CurationConcern
   #
   #  @example
   #  class MyActorClass < BaseActor
-  #     include CurationConcern::ManagesVisibilityActor
+  #     include CurationConcern::ManagesPermissionsActor
   #
   #     def create
   #       interpret_visibility && super && copy_visibility
@@ -17,14 +17,14 @@ module CurationConcern
   #     end
   #  end
   #
-  module ManagesVisibilityActor
+  module ManagesPermissionsActor
     extend ActiveSupport::Concern
 
       def confirm
       end
 
       def copy_visibility
-        Sufia.queue.push(CopyVisibilityJob.new(curation_concern.id))
+        Sufia.queue.push(CopyPermissionsJob.new(curation_concern.id))
         true
       end
   end

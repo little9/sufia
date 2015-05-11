@@ -9,6 +9,7 @@ module Sufia::Works
       include Hydra::Collections::Collectible
       include Solrizer::Common
       include Sufia::GenericFile::Permissions
+      include WithEditors
     end
   end
 end
